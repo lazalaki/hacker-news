@@ -1,0 +1,31 @@
+.input__group {
+  display: flex;
+  flex-direction: column;
+  height: 90px;
+
+  &__label {
+    margin-bottom: 5px;
+  }
+
+  &__input {
+    height: 35px;
+    width: 300px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 15px;
+    background-color: #e8e8e8;
+
+    &--error {
+      border: 1px solid red;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__error {
+    color: red;
+    margin-top: 8px;
+  }
+}
