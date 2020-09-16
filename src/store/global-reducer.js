@@ -1,7 +1,8 @@
 import { SET_USER, SET_LOGGED_IN } from './global-types';
+import { getFromStroage } from '../services/shared/localStorageService';
 
 export const initialGlobalState = {
-  user: null,
+  user: getFromStroage('user') || null,
   isLoggedIn: false,
 };
 

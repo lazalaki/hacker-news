@@ -12,6 +12,7 @@ import avatar from '../../../images/avatar.svg';
 
 import { showMessage } from '../../../services/shared/toastService';
 import { GlobalStore } from '../../../store/global-store';
+import { loginFormValidation } from './loginFormValidation';
 
 const Login = ({ history }) => {
   const { setUser } = useContext(GlobalStore);
@@ -21,6 +22,7 @@ const Login = ({ history }) => {
       email: '',
       password: '',
     },
+    validateOnMount: loginFormValidation,
   });
 
   const onSubmitHandler = async () => {

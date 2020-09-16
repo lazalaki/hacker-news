@@ -21,8 +21,6 @@ const Register = ({ history }) => {
     validationSchema: registerFormValidation,
   });
 
-  console.log(formik);
-
   const onSubmitHandler = async () => {
     try {
       await registerRequest(formik.values);

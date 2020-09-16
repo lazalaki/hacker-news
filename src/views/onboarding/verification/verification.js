@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import queryString from 'query-string';
 import phone from '../../../images/phone.svg';
 import avatar from '../../../images/avatar.svg';
+import { verificationFormValidation } from './verificationFormValidation';
 
 import { homepageRoute } from '../../../shared/routes/routes';
 import { showMessage } from '../../../services/shared/toastService';
@@ -16,6 +17,7 @@ const Verification = ({ history, location }) => {
     initialValues: {
       password: '',
     },
+    validationSchema: verificationFormValidation,
   });
 
   const onSubmitHandler = async () => {

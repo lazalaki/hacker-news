@@ -4,12 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/navbar/navbar';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
       <App />
     </BrowserRouter>
   </React.StrictMode>,

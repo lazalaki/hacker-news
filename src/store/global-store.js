@@ -17,7 +17,7 @@ export const GlobalStoreProvider = ({ children }) => {
   };
 
   return (
-    <GlobalStore.Provider value={(state, setUser)}>
+    <GlobalStore.Provider value={{ state, setUser }}>
       {children}
     </GlobalStore.Provider>
   );

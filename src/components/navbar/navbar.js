@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
   registerRoute,
@@ -10,9 +10,15 @@ import './navbar.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { GlobalStore } from '../../store/global-store';
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+
+  const {
+    state: { user },
+  } = useContext(GlobalStore);
+  console.log(user);
 
   return (
     <>
@@ -26,44 +32,46 @@ const Navbar = () => {
         </div>
 
         <div className="navbar__links">
-          <div className={'navbar__links--left'}>
-            <Link to={homepageRoute()} className="links">
-              New
-            </Link>
+          {user ? (
+            <div className={'navbar__links--left'}>
+              <Link to={homepageRoute()} className="links">
+                New
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Past
-            </Link>
+              <Link to={homepageRoute()} className="links">
+                Past
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Comments
-            </Link>
+              <Link to={homepageRoute()} className="links">
+                Comments
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Ask
-            </Link>
+              <Link to={homepageRoute()} className="links">
+                Ask
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Show
-            </Link>
+              <Link to={homepageRoute()} className="links">
+                Show
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Jobs
-            </Link>
+              <Link to={homepageRoute()} className="links">
+                Jobs
+              </Link>
 
-            <Link to={homepageRoute()} className="links">
-              Submit
-            </Link>
-          </div>
-
-          <div className={'navbar__links--rights'}>
-            <Link to={loginRoute()} className="links">
-              Login
-            </Link>
-            <Link to={registerRoute()} className="links">
-              Register
-            </Link>
-          </div>
+              <Link to={homepageRoute()} className="links">
+                Submit
+              </Link>
+            </div>
+          ) : (
+            <div className={'navbar__links--rights'}>
+              <Link to={loginRoute()} className="links">
+                Login
+              </Link>
+              <Link to={registerRoute()} className="links">
+                Register
+              </Link>
+            </div>
+          )}
         </div>
 
         {menu ? (
