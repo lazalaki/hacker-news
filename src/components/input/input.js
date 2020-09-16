@@ -12,7 +12,13 @@ const Input = ({
   placeholder,
   error = null,
 }) => {
-  const hasError = () => error && error[name];
+  const hasError = () => {
+    if (value) {
+      return error && error[name];
+    }
+
+    return;
+  };
 
   return (
     <>

@@ -5,11 +5,11 @@ import Button from '../../../components/button/button';
 import { useFormik } from 'formik';
 import { withRouter } from 'react-router';
 import queryString from 'query-string';
-
-import '../../../style/form/form.scss';
-import wave from '../../../images/wave.png';
 import phone from '../../../images/phone.svg';
 import avatar from '../../../images/avatar.svg';
+
+import { homepageRoute } from '../../../shared/routes/routes';
+import { showMessage } from '../../../services/shared/toastService';
 
 const Verification = ({ history, location }) => {
   const formik = useFormik({
@@ -30,27 +30,28 @@ const Verification = ({ history, location }) => {
 
     try {
       await verificationRequest(payload);
+      showMessage(
+        'Success',
+        'Yout have succesfully verified your account',
+        'success',
+      );
+      history.push(homepageRoute());
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <>
-      <img className="wave" src={wave} alt="Wave" />
       <div className="container">
         <div className="img">
           <img className="img__phone" src={phone} alt="Phone" />
         </div>
-        <div className="register">
-          <div className="register__header">
-            <img
-              className="register__avatar"
-              src={avatar}
-              alt="Avatar"
-            />
+        <div className="form">
+          <div className="form__header">
+            <img className="form__avatar" src={avatar} alt="Avatar" />
             <h2>Welcome</h2>
           </div>
-          <div className="register__form">
+          <div className="form__form">
             <Input
               type={'password'}
               id={'password'}

@@ -11,7 +11,7 @@ export const registerFormValidation = Yup.object().shape({
     .required('Required field'),
 
   password: Yup.string()
-    .min(6, 'To short name')
-    .max(15, 'To long name')
+    .min(6, 'To short password')
+    .max(15, 'To long password')
     .required('Required field'),
 });

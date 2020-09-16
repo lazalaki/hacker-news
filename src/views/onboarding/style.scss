@@ -9,14 +9,18 @@
 .container {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  background-image: url('../../images/wave.png');
+  background-repeat: no-repeat;
+  background-size: contain;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 7rem;
-  padding: 0 2rem;
 }
 
-.register {
+.form {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -37,6 +41,7 @@
 
 .img {
   display: flex;
+  flex: 0 0 45%;
   justify-content: flex-end;
   align-items: center;
 
@@ -52,11 +57,12 @@
 @media screen and (max-width: 1050px) {
   .container {
     grid-gap: 5rem;
+    background-image: none;
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .register__header h2 {
+  .form__header h2 {
     font-size: 2.4rem;
     margin: 8px 0;
   }
@@ -79,7 +85,7 @@
     display: none;
   }
 
-  .register__form {
+  .form__form {
     justify-content: center;
   }
 }
