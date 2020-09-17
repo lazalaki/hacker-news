@@ -30,9 +30,7 @@ const Register = ({ history }) => {
         'success',
       );
       history.push(loginRoute());
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -56,7 +54,6 @@ const Register = ({ history }) => {
               onChange={formik.handleChange}
               value={formik.values.name}
               error={formik.errors}
-              isDirty={formik.dirty}
               placeholder={'Your Name'}
             />
 
@@ -69,7 +66,6 @@ const Register = ({ history }) => {
               onChange={formik.handleChange}
               value={formik.values.email}
               error={formik.errors}
-              isDirty={formik.dirty}
               placeholder={'Your Email'}
             />
 
@@ -82,12 +78,11 @@ const Register = ({ history }) => {
               onChange={formik.handleChange}
               value={formik.values.password}
               error={formik.errors}
-              isDirty={formik.dirty}
               placeholder={'Your Password'}
             />
 
             <Button
-              disabled={!formik.isValid}
+              disabled={!formik.dirty || !formik.isValid}
               onClick={onSubmitHandler}
               text={'Register'}
             />

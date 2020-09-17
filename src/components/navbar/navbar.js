@@ -1,24 +1,27 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  registerRoute,
-  loginRoute,
-  homepageRoute,
-} from '../../shared/routes/routes';
+import { loginRoute } from '../../shared/routes/routes';
 import logo from '../../images/logo.svg';
 import './navbar.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { GlobalStore } from '../../store/global-store';
+import AuthNavbarLinks from '../navbarLinks/authNavbarLinks';
+import NonAuthNavbarLinks from '../navbarLinks/nonAuthNavbarLinks';
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
 
+  const { logout } = useContext(GlobalStore);
+
+  const toggleMenu = () => {
+    setMenu(!menu);
+  };
+
   const {
     state: { user },
   } = useContext(GlobalStore);
-  console.log(user);
 
   return (
     <>
@@ -33,119 +36,23 @@ const Navbar = () => {
 
         <div className="navbar__links">
           {user ? (
-            <div className={'navbar__links--left'}>
-              <Link to={homepageRoute()} className="links">
-                New
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Past
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Comments
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Ask
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Show
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Jobs
-              </Link>
-
-              <Link to={homepageRoute()} className="links">
-                Submit
-              </Link>
-            </div>
+            <AuthNavbarLinks />
           ) : (
             <div className={'navbar__links--rights'}>
-              <Link to={loginRoute()} className="links">
-                Login
-              </Link>
-              <Link to={registerRoute()} className="links">
-                Register
-              </Link>
+              <NonAuthNavbarLinks />
             </div>
           )}
         </div>
 
         {menu ? (
           <div className="mobile__navbar">
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              New
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Past
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Comments
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Ask
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Show
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Jobs
-            </Link>
-
-            <Link
-              to={homepageRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Submit
-            </Link>
-
-            <Link
-              to={loginRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Login
-            </Link>
-            <Link
-              to={registerRoute()}
-              className="links"
-              onClick={() => setMenu(!menu)}
-            >
-              Register
-            </Link>
+            {user ? (
+              <AuthNavbarLinks onClick={toggleMenu} />
+            ) : (
+              <div className="mobile__navbar__nonauth">
+                <NonAuthNavbarLinks onClick={toggleMenu} />
+              </div>
+            )}
           </div>
         ) : (
           ''

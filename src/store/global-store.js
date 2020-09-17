@@ -16,8 +16,14 @@ export const GlobalStoreProvider = ({ children }) => {
     setLoggedInAction(true, dispatch);
   };
 
+  const logout = () => {
+    localStorage.clear();
+    setUserAction(null, dispatch);
+    setLoggedInAction(false, dispatch);
+  };
+
   return (
-    <GlobalStore.Provider value={{ state, setUser }}>
+    <GlobalStore.Provider value={{ state, setUser, logout }}>
       {children}
     </GlobalStore.Provider>
   );

@@ -12,7 +12,6 @@
 
   &__links {
     display: flex;
-    justify-content: space-between;
     width: 100%;
   }
 
@@ -21,6 +20,11 @@
     height: 60px;
     width: 60px;
   }
+}
+
+.links-right {
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .links {
@@ -57,16 +61,22 @@
 }
 
 @media screen and (max-width: 850px) {
+  .mobile__navbar__auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobile__navbar__nonauth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .navbar__links {
     display: none;
   }
 
   .navbar__menu {
     display: block;
-  }
-
-  .navbar_menu--icon:hover {
-    color: white;
   }
 
   .mobile__navbar {
@@ -95,5 +105,10 @@
       #38d39f,
       #32be8f
     );
+  }
+
+  .links-right {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

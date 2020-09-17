@@ -22,7 +22,7 @@ const Login = ({ history }) => {
       email: '',
       password: '',
     },
-    validateOnMount: loginFormValidation,
+    validationSchema: loginFormValidation,
   });
 
   const onSubmitHandler = async () => {
@@ -36,7 +36,7 @@ const Login = ({ history }) => {
       setUser(data.user);
       history.push(dashboardRoute());
     } catch (error) {
-      console.log(error);
+      showMessage('Warning', `${error}`, 'danger');
     }
   };
 
@@ -61,7 +61,6 @@ const Login = ({ history }) => {
               onChange={formik.handleChange}
               value={formik.values.email}
               error={formik.errors}
-              isDirty={formik.dirty}
               placeholder={'Your Email'}
             />
 
@@ -74,12 +73,11 @@ const Login = ({ history }) => {
               onChange={formik.handleChange}
               value={formik.values.password}
               error={formik.errors}
-              isDirty={formik.dirty}
               placeholder={'Your Password'}
             />
 
             <Button
-              disabled={!formik.isValid}
+              disabled={!formik.dirty || !formik.isValid}
               onClick={onSubmitHandler}
               text={'Login'}
             />

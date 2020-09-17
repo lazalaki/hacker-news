@@ -1,10 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
-import {
-  dashboardRoute,
-  homepageRoute,
-} from '../../shared/routes/routes';
-import Homepage from './homepage/homepage';
+import { homepageRoute } from '../../shared/routes/routes';
+import Homepage from './homepage/new';
 
 const Dashboard = () => {
   return (
