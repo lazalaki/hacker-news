@@ -9,7 +9,7 @@ import phone from '../../../images/phone.svg';
 import avatar from '../../../images/avatar.svg';
 import { verificationFormValidation } from './verificationFormValidation';
 
-import { homepageRoute } from '../../../shared/routes/routes';
+import { newRoute } from '../../../shared/routes/routes';
 import { showMessage } from '../../../services/shared/toastService';
 
 const Verification = ({ history, location }) => {
@@ -37,7 +37,7 @@ const Verification = ({ history, location }) => {
         'Yout have succesfully verified your account',
         'success',
       );
-      history.push(homepageRoute());
+      history.push(newRoute());
     } catch (error) {
       console.log(error);
     }

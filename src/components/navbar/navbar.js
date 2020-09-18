@@ -19,6 +19,11 @@ const Navbar = () => {
     setMenu(!menu);
   };
 
+  const onClickMenu = () => {
+    logout();
+    toggleMenu();
+  };
+
   const {
     state: { user },
   } = useContext(GlobalStore);
@@ -36,7 +41,16 @@ const Navbar = () => {
 
         <div className="navbar__links">
           {user ? (
-            <AuthNavbarLinks />
+            <div className="navbar__links--right">
+              <AuthNavbarLinks />
+              <Link
+                onClick={logout}
+                to={loginRoute()}
+                className="links"
+              >
+                Logout
+              </Link>
+            </div>
           ) : (
             <div className={'navbar__links--rights'}>
               <NonAuthNavbarLinks />
@@ -47,7 +61,16 @@ const Navbar = () => {
         {menu ? (
           <div className="mobile__navbar">
             {user ? (
-              <AuthNavbarLinks onClick={toggleMenu} />
+              <div className="mobile__navbar__auth">
+                <AuthNavbarLinks onClick={toggleMenu} />
+                <Link
+                  onClick={onClickMenu}
+                  to={loginRoute()}
+                  className="links"
+                >
+                  Logout
+                </Link>
+              </div>
             ) : (
               <div className="mobile__navbar__nonauth">
                 <NonAuthNavbarLinks onClick={toggleMenu} />
