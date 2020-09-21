@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   loginRoute,
   registerRoute,
-} from '../../shared/routes/routes';
+} from '../../../shared/routes/routes';
 
 const NonAuthNavbarLinks = ({ onClick }) => {
   const nonAuthNavbarLinks = [

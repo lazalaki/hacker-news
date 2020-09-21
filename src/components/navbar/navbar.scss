@@ -10,6 +10,16 @@
   );
   width: 100%;
 
+  &__links {
+    width: 100%;
+  }
+
+  &__links > div > .links1 {
+    position: absolute;
+    right: 25px;
+    top: 12px;
+  }
+
   &__logo__image {
     margin: 0 25px;
     height: 60px;
@@ -17,7 +27,8 @@
   }
 }
 
-.links {
+.links,
+.links1 {
   padding: 14px 16px;
   text-decoration: none;
   font-weight: 500;
@@ -26,7 +37,8 @@
   font-size: 1rem;
 }
 
-.links:hover {
+.links:hover,
+.links1:hover {
   background-color: #105c52;
   border-radius: 25px;
 }

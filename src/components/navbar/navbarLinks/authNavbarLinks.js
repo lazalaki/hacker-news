@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { newRoute, loginRoute } from '../../shared/routes/routes';
-import { GlobalStore } from '../../store/global-store';
+import { newRoute } from '../../../shared/routes/routes';
 
 const AuthNavbarLinks = ({ onClick }) => {
-  const { logout } = useContext(GlobalStore);
   const authLink = [
     { id: 1, to: newRoute(), className: 'links', name: 'New' },
     { id: 2, to: newRoute(), className: 'links', name: 'Past' },
@@ -23,12 +21,6 @@ const AuthNavbarLinks = ({ onClick }) => {
       className: 'links',
       name: 'Submit',
     },
-    // {
-    //   id: 8,
-    //   to: loginRoute(),
-    //   className: 'links links-right',
-    //   name: 'Logout',
-    // },
   ];
 
   return (

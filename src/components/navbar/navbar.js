@@ -7,8 +7,8 @@ import './navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { GlobalStore } from '../../store/global-store';
-import AuthNavbarLinks from '../navbarLinks/authNavbarLinks';
-import NonAuthNavbarLinks from '../navbarLinks/nonAuthNavbarLinks';
+import AuthNavbarLinks from './navbarLinks/authNavbarLinks';
+import NonAuthNavbarLinks from './navbarLinks/nonAuthNavbarLinks';
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
@@ -41,18 +41,18 @@ const Navbar = () => {
 
         <div className="navbar__links">
           {user ? (
-            <div className="navbar__links--right">
+            <div>
               <AuthNavbarLinks />
               <Link
                 onClick={logout}
                 to={loginRoute()}
-                className="links"
+                className="links1"
               >
                 Logout
               </Link>
             </div>
           ) : (
-            <div className={'navbar__links--rights'}>
+            <div>
               <NonAuthNavbarLinks />
             </div>
           )}
