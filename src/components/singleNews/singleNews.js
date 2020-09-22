@@ -32,9 +32,7 @@ const SingleNews = ({ singleNews }) => {
         <div className="card__footer">
           <p>
             {singleNews.score} point by {singleNews.by}{' '}
-            <Moment parse="YYYY-MM-DD HH:mm">
-              {singleNews.time}
-            </Moment>
+            <Moment fromNow>{singleNews.time}</Moment>
           </p>
         </div>
       </div>

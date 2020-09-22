@@ -1,4 +1,4 @@
-import { SET_USER, SET_LOGGED_IN } from './global-types';
+import { SET_USER, SET_LOGGED_IN, SET_ALL_IDS } from './global-types';
 
 export const setUserAction = (user, dispatch) => {
   dispatch({
@@ -11,5 +11,12 @@ export const setLoggedInAction = (status, dispatch) => {
   dispatch({
     type: SET_LOGGED_IN,
     payload: { isLoggedIn: status },
+  });
+};
+
+export const setAllIdsAction = (allIds, dispatch) => {
+  dispatch({
+    type: SET_ALL_IDS,
+    payload: { allIds: allIds },
   });
 };

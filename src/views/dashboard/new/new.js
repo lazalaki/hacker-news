@@ -1,44 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import SingleNews from '../../../components/singleNews/singleNews';
 
 import './new.scss';
+import { GlobalStore } from '../../../store/global-store';
 
 const New = () => {
-  const [allIds, setAllIds] = useState([]);
-  const [loadMoreNews, setLoadMoreNews] = useState(10);
   const [news, setNews] = useState([]);
+  const [offset, setOffset] = useState(0);
+
+  const {
+    state: { allIds },
+  } = useContext(GlobalStore);
 
   useEffect(() => {
-    newNews();
-  }, []);
+    if (allIds.length === 0) {
+      return;
+    }
+    const nextIds = allIds.slice(offset, offset + 10);
 
-  const newNews = async () => {
-    const { data } = await axios.get(
-      'https://hacker-news.firebaseio.com/v0/newstories.json',
-    );
-    setAllIds(data);
-    getTenNews(data);
-  };
+    getTenNews(nextIds);
+  }, [offset, allIds]);
 
   const getTenNews = async (ids) => {
-    const requests = ids
-      .slice(0, loadMoreNews)
-      .map((id) =>
-        axios.get(
-          'https://hacker-news.firebaseio.com/v0/item/' +
-            id +
-            '.json',
-        ),
-      );
+    const requests = ids.map((id) =>
+      axios.get(
+        'https://hacker-news.firebaseio.com/v0/item/' + id + '.json',
+      ),
+    );
 
     const arrayData = await Promise.all(requests);
-    setNews(
-      arrayData
+
+    setNews([
+      ...news,
+      ...arrayData
         .map((data) => data.data)
         .filter((item) => item !== null),
-    );
-    setLoadMoreNews(loadMoreNews + 10);
+    ]);
   };
 
   return (
@@ -50,7 +48,9 @@ const New = () => {
           );
         })}
         <button
-          onClick={() => getTenNews(allIds)}
+          onClick={() => {
+            setOffset(offset + 10);
+          }}
           className="news__button"
         >
           Load More...
