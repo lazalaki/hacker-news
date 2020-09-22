@@ -2,6 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 
 import './singleNews.scss';
+import { commentsRoute } from '../../shared/routes/routes';
 
 const SingleNews = ({ singleNews }) => {
   const url = singleNews.url
@@ -11,8 +12,6 @@ const SingleNews = ({ singleNews }) => {
         .replace('www.', '')
         .split(/[:/]/)
     : '';
-
-  console.log();
 
   return (
     <>
@@ -31,8 +30,13 @@ const SingleNews = ({ singleNews }) => {
         </div>
         <div className="card__footer">
           <p>
-            {singleNews.score} point by {singleNews.by}{' '}
+            {singleNews.score} point by {singleNews.by}
             <Moment fromNow>{singleNews.time}</Moment>
+          </p>
+          <p className="card__footer__comments">
+            <a href={commentsRoute() + '?comments=' + singleNews.id}>
+              Comments
+            </a>
           </p>
         </div>
       </div>

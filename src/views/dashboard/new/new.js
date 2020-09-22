@@ -30,6 +30,7 @@ const New = () => {
     );
 
     const arrayData = await Promise.all(requests);
+    console.log(arrayData);
 
     setNews([
       ...news,

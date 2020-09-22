@@ -34,7 +34,7 @@ export const GlobalStoreProvider = ({ children }) => {
   const getAllIds = async () => {
     try {
       const { data } = await axios.get(
-        'https://hacker-news.firebaseio.com/v0/newstories.json',
+        'https://hacker-news.firebaseio.com/v0/topstories.json',
       );
       setAllIdsAction(data, dispatch);
     } catch (error) {

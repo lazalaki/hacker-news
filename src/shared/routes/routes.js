@@ -5,3 +5,4 @@ export const loginRoute = () => `${onboardingRoute()}/login`;
 export const registerRoute = () => `${onboardingRoute()}/register`;
 export const verificationRoute = () =>
   `${onboardingRoute()}/verification`;
+export const commentsRoute = (id) => `${dashboardRoute()}/comments`;
