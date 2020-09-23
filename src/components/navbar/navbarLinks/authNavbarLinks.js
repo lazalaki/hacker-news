@@ -4,7 +4,7 @@ import { newRoute } from '../../../shared/routes/routes';
 
 const AuthNavbarLinks = ({ onClick }) => {
   const authLink = [
-    { id: 1, to: newRoute(), className: 'links', name: 'New' },
+    { id: 1, to: newRoute(), className: 'links', name: 'News' },
     { id: 2, to: newRoute(), className: 'links', name: 'Past' },
     {
       id: 3,

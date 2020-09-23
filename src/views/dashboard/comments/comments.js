@@ -23,9 +23,9 @@ const Comments = () => {
 
   useEffect(() => {
     if (singleNews && singleNews.kids.length !== 0) {
-      getCommentsById();
+      getCommentsById(singleNews.kids.slice(offset, offset + 10));
     }
-  }, [singleNews]);
+  }, [singleNews, offset]);
 
   const getNewsById = async (newsId) => {
     const requests = axios.get(
@@ -43,8 +43,8 @@ const Comments = () => {
     return <></>;
   }
 
-  const getCommentsById = async () => {
-    const requests = singleNews.kids.map((kidId) => {
+  const getCommentsById = async (singleNewsIds) => {
+    const requests = singleNewsIds.map((kidId) => {
       return axios.get(
         'https://hacker-news.firebaseio.com/v0/item/' +
           kidId +
@@ -62,32 +62,42 @@ const Comments = () => {
 
   return (
     <>
-      <div className="comments__container">
-        <div className="news">
+      <div className="comments__page">
+        <div className="news__text">
           <h3>News:</h3>
           <SingleNews singleNews={singleNews} />
         </div>
         <div className="comments">
           <h3>Comments:</h3>
-          {comments.map((comment) => {
-            return (
-              <div className="comments__comment" key={comment.id}>
-                <div className="comments__header">
-                  <p>
-                    {comment.text
-                      ? comment.text.replace(/<[^>]+>/g, '')
-                      : ''}
-                  </p>
+          <div className="comments__container">
+            {comments.map((comment) => {
+              return (
+                <div className="comments__comment" key={comment.id}>
+                  <div className="comments__header">
+                    <p>
+                      {comment.text
+                        ? comment.text.replace(/<[^>]+>/g, '')
+                        : ''}
+                    </p>
+                  </div>
+                  <div className="comments__footer">
+                    <p>
+                      Posted by: {comment.by}{' '}
+                      <Moment fromNow>{comment.time}</Moment>
+                    </p>
+                  </div>
                 </div>
-                <div className="comments__footer">
-                  <p>
-                    Posted by: {comment.by}{' '}
-                    <Moment fromNow>{comment.time}</Moment>
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+            <button
+              onClick={() => {
+                setOffset(offset + 10);
+              }}
+              className="comments__button"
+            >
+              Load More...
+            </button>
+          </div>
         </div>
       </div>
     </>
